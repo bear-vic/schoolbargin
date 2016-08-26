@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.CommentsMapper">
+
+	<!-- ============================MINE========START============================== -->
+
+
+	<select id="selectByGoodsId" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		SELECT *
+		FROM tb_comments a,tb_goods b,tb_user
+		c
+		WHERE
+		a.c_user=c.u_id and a.c_goods=b.g_id and a.c_goods
+		=#{goodsId,jdbcType=INTEGER}
+	</select>
+
+
+	<!-- =========================MINE===========END=========================== -->
+	<resultMap id="BaseResultMap" type="com.entity.Comments">
+		<id column="c_id" property="cId" jdbcType="INTEGER" />
+		<result column="c_user" property="cUser" jdbcType="INTEGER" />
+		<result column="c_goods" property="cGoods" jdbcType="INTEGER" />
+		<result column="c_date" property="cDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<resultMap id="ResultMapWithBLOBs" type="com.entity.Comments"
+		extends="BaseResultMap">
+		<result column="c_comments" property="cComments" jdbcType="LONGVARCHAR" />
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		c_id, c_user, c_goods, c_date
+	</sql>
+	<sql id="Blob_Column_List">
+		c_comments
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from tb_comments
+		where c_id = #{cId,jdbcType=INTEGER}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		tb_comments
+		where c_id = #{cId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.entity.Comments">
+		insert into tb_comments (c_id,
+		c_user, c_goods,
+		c_date, c_comments)
+		values (#{cId,jdbcType=INTEGER},
+		#{cUser,jdbcType=INTEGER},
+		#{cGoods,jdbcType=INTEGER},
+		#{cDate,jdbcType=TIMESTAMP}, #{cComments,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.entity.Comments">
+		insert into tb_comments
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cId != null">
+				c_id,
+			</if>
+			<if test="cUser != null">
+				c_user,
+			</if>
+			<if test="cGoods != null">
+				c_goods,
+			</if>
+			<if test="cDate != null">
+				c_date,
+			</if>
+			<if test="cComments != null">
+				c_comments,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cId != null">
+				#{cId,jdbcType=INTEGER},
+			</if>
+			<if test="cUser != null">
+				#{cUser,jdbcType=INTEGER},
+			</if>
+			<if test="cGoods != null">
+				#{cGoods,jdbcType=INTEGER},
+			</if>
+			<if test="cDate != null">
+				#{cDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cComments != null">
+				#{cComments,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.entity.Comments">
+		update tb_comments
+		<set>
+			<if test="cUser != null">
+				c_user = #{cUser,jdbcType=INTEGER},
+			</if>
+			<if test="cGoods != null">
+				c_goods = #{cGoods,jdbcType=INTEGER},
+			</if>
+			<if test="cDate != null">
+				c_date = #{cDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cComments != null">
+				c_comments = #{cComments,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where c_id = #{cId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.entity.Comments">
+		update
+		tb_comments
+		set c_user = #{cUser,jdbcType=INTEGER},
+		c_goods =
+		#{cGoods,jdbcType=INTEGER},
+		c_date = #{cDate,jdbcType=TIMESTAMP},
+		c_comments = #{cComments,jdbcType=LONGVARCHAR}
+		where c_id =
+		#{cId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.entity.Comments">
+		update tb_comments
+		set c_user = #{cUser,jdbcType=INTEGER},
+		c_goods =
+		#{cGoods,jdbcType=INTEGER},
+		c_date = #{cDate,jdbcType=TIMESTAMP}
+		where
+		c_id = #{cId,jdbcType=INTEGER}
+	</update>
+
+
+
+
+
+</mapper>

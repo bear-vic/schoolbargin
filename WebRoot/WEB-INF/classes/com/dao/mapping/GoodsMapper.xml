@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.GoodsMapper">
+
+
+<!-- ============================MINE========START============================== -->
+
+
+
+
+
+<!-- =========================MINE===========END=========================== -->
+
+
+	<resultMap id="BaseResultMap" type="com.entity.Goods">
+		<id column="g_id" property="gId" jdbcType="INTEGER" />
+		<result column="g_title" property="gTitle" jdbcType="VARCHAR" />
+		<result column="g_uid" property="gUid" jdbcType="INTEGER" />
+		<result column="g_price" property="gPrice" jdbcType="DECIMAL" />
+		<result column="g_name" property="gName" jdbcType="VARCHAR" />
+		<result column="g_pic" property="gPic" jdbcType="VARCHAR" />
+		<result column="g_date" property="gDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.entity.Goods"
+		extends="BaseResultMap">
+		<result column="g_descrption" property="gDescrption" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		g_id, g_title, g_uid, g_price, g_name, g_pic, g_date
+	</sql>
+	<sql id="Blob_Column_List">
+		g_descrption
+	</sql>
+
+	<insert id="insert" parameterType="com.entity.Goods">
+		insert into tb_goods (g_id,
+		g_title, g_uid,
+		g_price, g_name, g_pic,
+		g_date, g_descrption)
+		values
+		(#{gId,jdbcType=INTEGER}, #{gTitle,jdbcType=VARCHAR},
+		#{gUid,jdbcType=INTEGER},
+		#{gPrice,jdbcType=DECIMAL},
+		#{gName,jdbcType=VARCHAR}, #{gPic,jdbcType=VARCHAR},
+		#{gDate,jdbcType=TIMESTAMP}, #{gDescrption,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.entity.Goods">
+		insert into tb_goods
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="gId != null">
+				g_id,
+			</if>
+			<if test="gTitle != null">
+				g_title,
+			</if>
+			<if test="gUid != null">
+				g_uid,
+			</if>
+			<if test="gPrice != null">
+				g_price,
+			</if>
+			<if test="gName != null">
+				g_name,
+			</if>
+			<if test="gPic != null">
+				g_pic,
+			</if>
+			<if test="gDate != null">
+				g_date,
+			</if>
+			<if test="gDescrption != null">
+				g_descrption,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="gId != null">
+				#{gId,jdbcType=INTEGER},
+			</if>
+			<if test="gTitle != null">
+				#{gTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="gUid != null">
+				#{gUid,jdbcType=INTEGER},
+			</if>
+			<if test="gPrice != null">
+				#{gPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="gName != null">
+				#{gName,jdbcType=VARCHAR},
+			</if>
+			<if test="gPic != null">
+				#{gPic,jdbcType=VARCHAR},
+			</if>
+			<if test="gDate != null">
+				#{gDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gDescrption != null">
+				#{gDescrption,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.entity.Goods">
+		update tb_goods
+		<set>
+			<if test="gTitle != null">
+				g_title = #{gTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="gUid != null">
+				g_uid = #{gUid,jdbcType=INTEGER},
+			</if>
+			<if test="gPrice != null">
+				g_price = #{gPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="gName != null">
+				g_name = #{gName,jdbcType=VARCHAR},
+			</if>
+			<if test="gPic != null">
+				g_pic = #{gPic,jdbcType=VARCHAR},
+			</if>
+			<if test="gDate != null">
+				g_date = #{gDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gDescrption != null">
+				g_descrption = #{gDescrption,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where g_id = #{gId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.entity.Goods">
+		update
+		tb_goods
+		set g_title = #{gTitle,jdbcType=VARCHAR},
+		g_uid =
+		#{gUid,jdbcType=INTEGER},
+		g_price = #{gPrice,jdbcType=DECIMAL},
+		g_name =
+		#{gName,jdbcType=VARCHAR},
+		g_pic = #{gPic,jdbcType=VARCHAR},
+		g_date =
+		#{gDate,jdbcType=TIMESTAMP},
+		g_descrption =
+		#{gDescrption,jdbcType=LONGVARCHAR}
+		where g_id =
+		#{gId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.entity.Goods">
+		update tb_goods
+		set g_title = #{gTitle,jdbcType=VARCHAR},
+		g_uid =
+		#{gUid,jdbcType=INTEGER},
+		g_price = #{gPrice,jdbcType=DECIMAL},
+		g_name =
+		#{gName,jdbcType=VARCHAR},
+		g_pic = #{gPic,jdbcType=VARCHAR},
+		g_date =
+		#{gDate,jdbcType=TIMESTAMP}
+		where g_id = #{gId,jdbcType=INTEGER}
+	</update>
+
+	<!-- ========================================mine============================================== -->
+
+	<select id="selectAll" resultMap="ResultMapWithBLOBs">
+		select * from tb_goods
+	</select>
+	<select id="selectByUserId" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithBLOBs">
+		select * from tb_goods where g_uid=#{uId}
+	</select>
+	<select id="selectCount" resultType="int">
+		select count(*) from
+		tb_goods
+	</select>
+
+	<!-- 查询满足条件的记录数 -->
+	<select id="queryCount" resultType="int">
+		select count(*) from tb_goods
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="byGName!=null">
+				<bind name="byGName" value="'%' +byGName+ '%'" />
+				g_name like #{byGName}
+			</if>
+			<if test="uIds!=null">
+				and g_uid in
+				<foreach collection="uIds" item="id" open="(" separator=","
+					close=")">
+					#{id}
+				</foreach>
+			</if>
+		</trim>
+	</select>
+
+	<!-- 查询满足条件的记录 -->
+	<select id="queryPageBean" resultMap="ResultMapWithBLOBs">
+		select * from tb_goods
+		<where>
+			<trim  prefixOverrides="and|or">
+				<if test="byGName!=null">
+					<bind name="bgn" value="'%' +byGName+ '%'" />
+					g_name like #{bgn}
+				</if>
+				<if test="uIds!=null">
+					and g_uid in
+					<foreach collection="uIds" item="id" open="(" separator=","
+						close=")">
+						#{id}
+					</foreach>
+				</if>
+			</trim>
+		</where>
+		limit #{start},#{ps}
+	</select>
+
+	<select id="selectAllByPageBean" resultMap="ResultMapWithBLOBs">
+		select * from
+		tb_goods limit #{startPos},#{pageSize}
+	</select>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from tb_goods
+		where g_id = #{gId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		tb_goods
+		where g_id = #{gId,jdbcType=INTEGER}
+	</delete>
+
+</mapper>
