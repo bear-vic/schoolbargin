@@ -10,11 +10,11 @@ import java.io.Serializable;
 public class PageTag implements Serializable {
 	//
 	private static final long serialVersionUID = 6973324092976008761L;
-	private int current;
-	private int showCount;
-	private int totalPage;
-	private int left;
-	private int right;
+	private int current; // 当前页码
+	private int showCount; // 最多显示的页码
+	private int totalPage; // 总页数
+	private int left; // 当前页最左边的页码
+	private int right; // 当前页右边的页码
 
 	/**
 	 * @param current

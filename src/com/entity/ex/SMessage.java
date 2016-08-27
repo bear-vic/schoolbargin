@@ -6,7 +6,7 @@
 package com.entity.ex;
 
 public class SMessage {
-	private String msg;
+	private String msg; //消息
 
 	public SMessage() {
 		// TODO Auto-generated constructor stub

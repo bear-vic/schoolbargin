@@ -12,16 +12,16 @@ import org.apache.commons.lang.StringUtils;
 public class ItemQuery {
 	private int pc = 1;// 当前页
 	private int ps;// 每页 记录数
-	private String sPs;
-	private int start;
-	private String byGName;
-	private String byUName;
-	private String ugname;
-	private List<Integer> uIds;
+	private String sPs; // 每页记录数转换为
+	private int start; // 用limit查询数据库的起始位置
+	private String byGName;// 通过物品名称
+	private String byUName;// 通过用户名称
+	private String ugname;// 输入的名称  
+	private List<Integer> uIds; //符合条件的用户id
 
 	public void init() {
-		if (pc<=0) {
-			pc=1;
+		if (pc <= 0) {
+			pc = 1;
 		}
 		ps = obtainPs();
 		start = obtainStart();

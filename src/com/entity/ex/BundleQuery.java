@@ -1,18 +1,17 @@
 /**
- * @description 包含用户和商品的查询
- * @date 2016-8-21
+ * @description 查询结果，含多个对象
+ * @date 2016-8-26
  * @author hxg	
  */
 package com.entity.ex;
 
 import java.util.List;
-
 import com.entity.User;
 
 public class BundleQuery {
-	private ExGoods goods;
-	private User user;
-	private List<ExComments> commentsList;
+	private ExGoods goods; // 物品
+	private User user; // 用户
+	private List<ExComments> commentsList; // 所有评论
 
 	public List<ExComments> getCommentsList() {
 		return commentsList;

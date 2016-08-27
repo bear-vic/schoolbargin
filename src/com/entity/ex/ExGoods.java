@@ -10,8 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.entity.Goods;
 
 public class ExGoods extends Goods {
-	private MultipartFile gPicFile;
-	private String exDate;
+	private MultipartFile gPicFile; //图片文件
+	private String exDate; //格式化日期
 
 	public MultipartFile getgPicFile() {
 		return gPicFile;

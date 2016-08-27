@@ -33,6 +33,8 @@
 
 
 
+
+
 				
 				</td>
 			</tbody>
@@ -86,8 +88,16 @@ ${tmp.exDate}  ${tmp.exUname}:
     	</c:forEach>
     	</c:if>
 				</textarea>
-			<textarea class="form-control " rows="5%" name="gDescrption"
-				placeholder="<c:if test='${empty user}'>登录再来留言</c:if>"></textarea>
+			<c:choose>
+				<c:when test="${session_comments.user.uName eq user.uName}">
+					<textarea class="form-control " rows="5%" name="cComments"
+					disabled></textarea>
+				</c:when>
+				<c:otherwise>
+					<textarea class="form-control " rows="5%" name="cComments"
+						placeholder="<c:if test='${empty user}'>登录再来留言</c:if>"></textarea>
+				</c:otherwise>
+			</c:choose>
 			<input class="btn btn-block bg-info" type="submit" value="发送留言">
 			<textarea rows="1" hidden="true" name="cGoods">${session_comments.goods.gId} </textarea>
 		</form>
