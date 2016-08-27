@@ -16,6 +16,7 @@ import utils.MyConstants;
 import com.entity.User;
 import com.entity.ex.SMessage;
 import com.service.IUserService;
+import com.service.impl.UserManager;
 
 @Controller
 @RequestMapping("/user")
@@ -24,10 +25,16 @@ public class UserController {
 	IUserService userService;
 	@Resource
 	GoodsController goodsController;
+	UserManager userManager = UserManager.getInstance();
+
 	@RequestMapping(value = "/login")
-	public String login( User user, HttpSession session,HttpServletRequest req)
+	public String login(User user, HttpSession session, HttpServletRequest req)
 			throws Exception {
+		session.getServletContext().setAttribute(
+				MyConstants.APPLICATION_USERMAP, userManager);
 		if (userService.validate(session, user)) {
+			userManager.addUser(user, session);
+			session.setMaxInactiveInterval(60*10);
 			goodsController.search(req, 1, 4);
 			return "main";
 		}
@@ -42,21 +49,23 @@ public class UserController {
 	}
 
 	@RequestMapping("/regist")
-	public String regist(User user,HttpServletRequest req) throws Exception {
+	public String regist(User user, HttpServletRequest req) throws Exception {
 		userService.addUser(user);
 		req.setAttribute(MyConstants.REQUEST_MSG, new SMessage("注册成功"));
 		return "hand_result";
 	}
 
 	@RequestMapping("/update")
-	public String update(HttpSession session, User user,HttpServletRequest req) throws Exception {
+	public String update(HttpSession session, User user, HttpServletRequest req)
+			throws Exception {
 		userService.updateUser(session, user);
 		req.setAttribute(MyConstants.REQUEST_MSG, new SMessage("修改成功"));
 		return "hand_result";
 	}
+
 	@RequestMapping("/lookother")
 	public String lookOther(HttpSession session) throws Exception {
-		//userService.updateUser(session, user);
+		// userService.updateUser(session, user);
 		return "user_info_others";
 	}
 }

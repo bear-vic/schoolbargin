@@ -19,7 +19,7 @@ import com.service.ICommentsService;
 public class CommentsController {
 	@Resource
 	ICommentsService commentsService;
-
+	
 	@RequestMapping("/watch")
 	public String watch(int goodsId, HttpSession session) throws Exception {
 		commentsService.queryAllByGoodsId(goodsId, session);

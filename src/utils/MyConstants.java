@@ -24,5 +24,7 @@ public class MyConstants {
 	public static final String SESSION_OBJ = "session_obj";
 	// 已放弃
 	public static final String REQUEST_PBU = "pbu";
+	//用户列表
+	public static final String APPLICATION_USERMAP = "um";
 	
 }

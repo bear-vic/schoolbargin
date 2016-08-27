@@ -32,7 +32,14 @@ public class SecurityManager {
 			}
 		}
 	}
-
+	
+	/*@After("execution(* com.control.UserController.log*(..))")
+	public void count(JoinPoint point) throws Exception {
+		
+		System.out.println("------------after check---------------------------");
+	}
+	*/
+	
 	// 对密码加密
 	/*
 	 * @Around("execution(* com.control.UserController.*(..))") public void
