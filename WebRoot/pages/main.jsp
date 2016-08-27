@@ -30,7 +30,7 @@
 				<div class="panel-body ">
 				 <a href="<c:url value='/comments/watch?goodsId=${bundleQuery.goods.gId}'/>">
 				 <img class=" img-rounded center-block"
-						src="/${bundleQuery.goods.gPic}" width="200px" height="200px"
+						src="/${bundleQuery.goods.gPic}" width="480px" height="270px"
 						onclick="imgfun"></a>
 					<table class="table  table-condensed">
 						<tr>
