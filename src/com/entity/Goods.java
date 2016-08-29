@@ -1,10 +1,13 @@
 package com.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Goods {
-    private Integer gId;
+public class Goods  implements Serializable{
+    private static final long serialVersionUID = 1L;
+
+	private Integer gId;
 
     private String gTitle;
 

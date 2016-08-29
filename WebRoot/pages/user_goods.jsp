@@ -34,7 +34,7 @@
                   action="${pageContext.request.contextPath }/goods/modify?gId=${goods.gId}"
                   method="post" enctype="multipart/form-data">
                 <img src="/${goods.gPic}" class="img-rounded center-block"
-                     width="200" height="200">
+                     width="300" height="300">
                 <table class="table table-bordered  table-hover bg-success ">
                     <tbody>
                     <td>图片:</td>

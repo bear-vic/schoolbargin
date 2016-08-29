@@ -5,10 +5,13 @@
  */
 package com.entity.ex;
 
+import java.io.Serializable;
 import java.util.List;
 import com.entity.User;
 
-public class BundleQuery {
+public class BundleQuery implements Serializable{
+	//
+	private static final long serialVersionUID = 1L;
 	private ExGoods goods; // 物品
 	private User user; // 用户
 	private List<ExComments> commentsList; // 所有评论

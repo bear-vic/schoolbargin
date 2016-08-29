@@ -27,12 +27,11 @@
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-fluid" >
-	<nav class="navbar navbar-fixed-bottom ">
-		<ul>
-			<li><a  href="<c:url value='/pages/main.jsp'/>"
-				style="font-size:12px; color: #FF0000">返回</a></li>
-		</ul>
-	</nav>
-</div>
+		<nav class="navbar  navbar-fixed-bottom col-xs-1 " style="height:10px; ">
+			<ul >
+				<li><a id="back" href="<c:url value='/pages/main.jsp'/>"
+					style="font-size:12px; color: #FF0000">返回</a>
+				</li>
+			</ul>
+		</nav>
 </body>

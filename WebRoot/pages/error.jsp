@@ -10,6 +10,12 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <title>Template</title>
+<script type="text/javascript">
+	$(function() {
+		$("#btn").click(function() {
+		});
+	});
+</script>
 </head>
 
 <body>

@@ -8,6 +8,7 @@ package com.service;
 import javax.servlet.http.HttpSession;
 
 import com.entity.Comments;
+import com.entity.ex.BundleQuery;
 
 public interface ICommentsService {
 
@@ -28,6 +29,6 @@ public interface ICommentsService {
 	 * @return void
 	 * @param
 	 */
-	void queryAllByGoodsId(int goodsId, HttpSession session) throws Exception;
+	BundleQuery queryAllByGoodsId(int goodsId, HttpSession session) throws Exception;
 
 }

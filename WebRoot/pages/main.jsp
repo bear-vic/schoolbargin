@@ -10,6 +10,8 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <title>主页</title>
+<script type="text/javascript">
+</script>
 </head>
 <body>
 	<div class="container-fluid ">
@@ -28,42 +30,47 @@
 		<c:forEach var="bundleQuery" items="${pb.tList}">
 			<div class="container col-lg-6 " style="position:relative">
 				<div class="panel-body ">
-				 <a href="<c:url value='/comments/watch?goodsId=${bundleQuery.goods.gId}'/>">
-				 <img class=" img-rounded center-block"
-						src="/${bundleQuery.goods.gPic}" width="480px" height="270px"
-						onclick="imgfun"></a>
+					<a
+						href="<c:url value='/comments/watch?goodsId=${bundleQuery.goods.gId}'/>">
+						<img class=" img-rounded center-block"
+						src="/${bundleQuery.goods.gPic}" width="360px" height="300px"
+						onclick="imgfun">
+					</a>
 					<table class="table  table-condensed">
 						<tr>
-							<td><label>商品名:</label></td>
+							<td><label>商品名:</label>
+							</td>
 							<td><span class="bg-info">${bundleQuery.goods.gName}</span>
 							</td>
 						</tr>
 						<tr>
-							<td><label> 卖家: </label></td>
+							<td><label> 卖家: </label>
+							</td>
 							<td><span class="bg-success">${bundleQuery.user.uName}</span>
 							</td>
 						</tr>
 						<tr>
-							<td><label>价格：</label></td>
+							<td><label>价格：</label>
+							</td>
 							<td><span class="bg-danger">${bundleQuery.goods.gPrice}&nbsp;&nbsp;
-									元</span></td>
+									元</span>
+							</td>
 						</tr>
 						<tr>
 							<td><label> 上架时间：</label>
 							<td>${bundleQuery.goods.exDate}</td>
 						</tr>
 						<tr>
-							<td><label>描述：</label>
+							<td><label>描述：</label></td>
+							<td><label> ${bundleQuery.goods.gTitle} </label>
 							</td>
-							<td><label> ${bundleQuery.goods.gTitle}
-							</label></td>
 						</tr>
 
 
 					</table>
 				</div>
 			</div>
-			
+
 		</c:forEach>
 	</div>
 </body>

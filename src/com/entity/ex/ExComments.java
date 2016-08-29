@@ -5,9 +5,12 @@
  */
 package com.entity.ex;
 
+import java.io.Serializable;
+
 import com.entity.Comments;
 
-public class ExComments extends Comments {
+public class ExComments extends Comments implements Serializable{
+	private static final long serialVersionUID = 6083158608860993785L;
 	private String exDate; //格式化日期
 	private String exUname; //用户名称
 

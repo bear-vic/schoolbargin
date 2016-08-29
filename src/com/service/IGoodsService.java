@@ -13,6 +13,7 @@ import com.entity.User;
 import com.entity.ex.BundleQuery;
 import com.entity.ex.ExGoods;
 import com.entity.ex.ItemQuery;
+import com.entity.ex.PageBean;
 
 public interface IGoodsService {
 
@@ -57,8 +58,8 @@ public interface IGoodsService {
 	 * @return void
 	 * @param
 	 */
-	void selectByPageBean(HttpServletRequest req, Integer pc, Integer ps)
-			throws Exception;
+	PageBean<BundleQuery> selectByPageBean(HttpServletRequest req, Integer pc,
+			Integer ps) throws Exception;
 
 	/**
 	 * @deprecated
@@ -81,15 +82,17 @@ public interface IGoodsService {
 	/**
 	 * @description 查询满足指定条件的商品并分页
 	 * @return void
-	 * @param iq 查询条件
+	 * @param iq
+	 *            查询条件
 	 */
-	void queryPageBean(HttpServletRequest req, ItemQuery iq) throws Exception;
+	PageBean<BundleQuery> queryPageBean(HttpServletRequest req, ItemQuery iq) throws Exception;
 
 	/**
 	 * @description 查询满足指定条件的商品并分页
 	 * @return void
-	 * @param iq   查询条件
-	 *           
+	 * @param iq
+	 *            查询条件
+	 * 
 	 */
 	int queryPageBeanCount(HttpServletRequest req, ItemQuery iq)
 			throws Exception;

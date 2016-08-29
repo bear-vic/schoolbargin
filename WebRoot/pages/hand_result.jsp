@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="refresh" content="3,url=<c:url value='/pages/main.jsp'/>">
     <meta http-equiv="expires" content="0">
     <title>结果页</title>
 </head>

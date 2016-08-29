@@ -5,7 +5,10 @@
  */
 package com.entity.ex;
 
-public class SMessage {
+import java.io.Serializable;
+
+public class SMessage  implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String msg; //消息
 
 	public SMessage() {

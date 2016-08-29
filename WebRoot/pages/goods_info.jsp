@@ -10,6 +10,29 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <title>商品详情</title>
+<script type="text/javascript">
+	$(function() {
+		function clear(id){
+			$(id).clear();
+		}
+		$("#send").click(function() {
+			$("#form_msg").submit();
+			/* $.ajax({
+				url : "<c:url value='/comments/leaveMsg'></c:url>",
+				data : $("#form_msg").serialize(),
+				type : "POST",
+				dataType : 'json',
+				success : function(rs) {
+					clear("#msg");
+					alert(rs);
+				},
+				error : function(er) {
+					alert(er);
+				}
+			}); */
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="container-fluid text-center">
@@ -25,6 +48,12 @@
 				<td>物品名称:</td>
 				<td><a class="" type="" name="gName" placeholder="请输入物品名称"
 					goods disabled="disabled" value="">${session_comments.goods.gName}
+
+
+
+
+
+
 
 
 
@@ -77,8 +106,8 @@
 			<li><a href="#">联系卖家</a></li>
 			<li><a>更多</a></li>
 		</ul>
-		<form action="<c:url value='/comments/leaveMsg'></c:url>"
-			method="post">
+		<form id="form_msg"
+			action="<c:url value='/comments/leaveMsg'></c:url>" method="post">
 			<textarea class="form-control " rows="16%" style="color:gray"
 				name="gDescrption" placeholder="" readonly>
 					<c:if test="${!empty session_comments.commentsList}">
@@ -90,15 +119,15 @@ ${tmp.exDate}  ${tmp.exUname}:
 				</textarea>
 			<c:choose>
 				<c:when test="${session_comments.user.uName eq user.uName}">
-					<textarea class="form-control " rows="5%" name="cComments"
-					disabled></textarea>
+					<textarea class="form-control " rows="5%" name="cComments" disabled></textarea>
 				</c:when>
 				<c:otherwise>
-					<textarea class="form-control " rows="5%" name="cComments"
+					<textarea id="msg" class="form-control " rows="5%" name="cComments"
 						placeholder="<c:if test='${empty user}'>登录再来留言</c:if>"></textarea>
 				</c:otherwise>
 			</c:choose>
-			<input class="btn btn-block bg-info" type="submit" value="发送留言">
+			<input id="send" class="btn btn-block bg-info" type="button"
+				value="发送留言">
 			<textarea rows="1" hidden="true" name="cGoods">${session_comments.goods.gId} </textarea>
 		</form>
 	</div>

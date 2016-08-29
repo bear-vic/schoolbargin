@@ -1,9 +1,12 @@
 package com.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Comments {
-    private Integer cId;
+public class Comments  implements Serializable{
+    private static final long serialVersionUID = 1L;
+
+	private Integer cId;
 
     private Integer cUser;
 

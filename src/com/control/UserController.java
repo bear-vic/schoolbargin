@@ -34,7 +34,7 @@ public class UserController {
 				MyConstants.APPLICATION_USERMAP, userManager);
 		if (userService.validate(session, user)) {
 			userManager.addUser(user, session);
-			session.setMaxInactiveInterval(60*10);
+			session.setMaxInactiveInterval(60 * 10);
 			goodsController.search(req, 1, 4);
 			return "main";
 		}
@@ -68,4 +68,5 @@ public class UserController {
 		// userService.updateUser(session, user);
 		return "user_info_others";
 	}
+
 }

@@ -5,11 +5,13 @@
  */
 package com.entity.ex;
 
+import java.io.Serializable;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.entity.Goods;
-
-public class ExGoods extends Goods {
+public class ExGoods extends Goods implements Serializable{
+	private static final long serialVersionUID = -6074876787179340794L;
 	private MultipartFile gPicFile; //图片文件
 	private String exDate; //格式化日期
 

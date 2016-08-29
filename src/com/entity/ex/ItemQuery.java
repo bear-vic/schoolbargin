@@ -5,11 +5,13 @@
  */
 package com.entity.ex;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-public class ItemQuery {
+public class ItemQuery  implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int pc = 1;// 当前页
 	private int ps;// 每页 记录数
 	private String sPs; // 每页记录数转换为

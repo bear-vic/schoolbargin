@@ -149,10 +149,11 @@ public class GoodsServiceImpl implements IGoodsService {
 	}
 
 	/**
+	 * @return 
 	 * @steps 1. 查询所有记录 2.得到分页 3. 存到session中
 	 * */
 	@Override
-	public void selectByPageBean(HttpServletRequest req, Integer pc, Integer ps)
+	public PageBean<BundleQuery> selectByPageBean(HttpServletRequest req, Integer pc, Integer ps)
 			throws Exception {
 		// 查询总记录数
 		int totalCount = goodsMapper.selectCount();
@@ -167,13 +168,15 @@ public class GoodsServiceImpl implements IGoodsService {
 
 		page.settList(dest);
 		req.getSession().setAttribute(MyConstants.REQUEST_PB, page);
+		return page;
 	}
 
 	/**
+	 * @return 
 	 * @steps 1.初始化查询条件，然后查询所有数据 2.初始化分页pagebean 3.存放到 session中
 	 * */
 	@Override
-	public void queryPageBean(HttpServletRequest req, ItemQuery iq)
+	public PageBean<BundleQuery> queryPageBean(HttpServletRequest req, ItemQuery iq)
 			throws Exception {
 		if (iq != null) {
 			String byU = iq.getByUName();
@@ -207,6 +210,7 @@ public class GoodsServiceImpl implements IGoodsService {
 
 		page.settList(dest);
 		req.getSession().setAttribute(MyConstants.REQUEST_PB, page);
+		return page;
 
 	}
 

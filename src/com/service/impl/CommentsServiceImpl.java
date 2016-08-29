@@ -49,7 +49,7 @@ public class CommentsServiceImpl implements ICommentsService {
 	}
 
 	@Override
-	public void queryAllByGoodsId(int goodsId, HttpSession session)
+	public BundleQuery queryAllByGoodsId(int goodsId, HttpSession session)
 			throws Exception {
 		@SuppressWarnings("unchecked")
 		PageBean<BundleQuery> pb = (PageBean<BundleQuery>) session
@@ -73,6 +73,7 @@ public class CommentsServiceImpl implements ICommentsService {
 		}
 		bundle.setCommentsList(exList);
 		session.setAttribute(MyConstants.SESSION_COMMENTS, bundle);
+		return bundle;
 	}
 
 }
