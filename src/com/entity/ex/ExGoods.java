@@ -10,18 +10,11 @@ import java.io.Serializable;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.entity.Goods;
-public class ExGoods extends Goods implements Serializable{
+
+public class ExGoods extends Goods implements Serializable {
 	private static final long serialVersionUID = -6074876787179340794L;
-	private MultipartFile gPicFile; //图片文件
-	private String exDate; //格式化日期
-
-	public MultipartFile getgPicFile() {
-		return gPicFile;
-	}
-
-	public void setgPicFile(MultipartFile gPicFile) {
-		this.gPicFile = gPicFile;
-	}
+	private String exDate; // 格式化日期
+	private MultipartFile gPicFile;
 
 	public String getExDate() {
 		return exDate;
@@ -29,6 +22,14 @@ public class ExGoods extends Goods implements Serializable{
 
 	public void setExDate(String exDate) {
 		this.exDate = exDate;
+	}
+
+	public MultipartFile getgPicFile() {
+		return gPicFile;
+	}
+
+	public void setgPicFile(MultipartFile gPicFile) {
+		this.gPicFile = gPicFile;
 	}
 
 }

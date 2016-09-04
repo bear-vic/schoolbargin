@@ -5,6 +5,7 @@
  */
 package com.control;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import utils.MyConstants;
 
@@ -30,7 +32,7 @@ import com.service.IGoodsService;
 public class GoodsController {
 	@Resource
 	IGoodsService goodsService;
-	
+
 	@RequestMapping(value = "/publish", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public String publish(HttpSession session, ExGoods goods,
@@ -93,7 +95,6 @@ public class GoodsController {
 			RequestMethod.GET })
 	public String searchLike(HttpServletRequest req, ItemQuery iq)
 			throws Exception {
-		// iq.setPs(pageCount);
 		goodsService.queryPageBean(req, iq);
 		return "main";
 	}
@@ -101,7 +102,29 @@ public class GoodsController {
 	@RequestMapping(value = "/lookdetail", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public String lookDetail(HttpServletRequest req, int gId) throws Exception {
-		// iq.setPs(pageCount);
 		return "goods_info";
 	}
+
+	// ////////////////////手机端///////////////////////////
+	@RequestMapping(value = "/clookall", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	@ResponseBody
+	public Object cLookAll(HttpServletRequest req) throws Exception {
+		List<BundleQuery> bL = goodsService.selectAll();
+		List<Object> ls = new ArrayList<Object>();
+		for (BundleQuery bundleQuery : bL) {
+			ExGoods ex = bundleQuery.getGoods();
+			ex.setgDate(null);
+			bundleQuery.setGoods(ex);
+			ls.add(bundleQuery);
+		}
+		return ls;
+	}
+
+	@ResponseBody
+	@RequestMapping("/clookmine")
+	public Object cLookMine(User user, HttpServletRequest req) throws Exception {
+		return goodsService.selectByUserId(user);
+	}
+	
 }

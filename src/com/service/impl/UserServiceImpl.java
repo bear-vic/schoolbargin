@@ -12,6 +12,7 @@ import com.dao.UserMapper;
 import com.entity.User;
 import com.exception.ExceptionCommon;
 import com.service.IUserService;
+
 @Transactional
 @Service
 public class UserServiceImpl implements IUserService {
@@ -32,8 +33,7 @@ public class UserServiceImpl implements IUserService {
 	public boolean validate(HttpSession session, User user) throws Exception {
 		User realastic = userMapper.selectByUserName(user.getuName());
 		if (realastic != null) {
-			if (realastic.getuPassword().equals(
-					user.getuPassword().trim())) {
+			if (realastic.getuPassword().equals(user.getuPassword().trim())) {
 				session.setAttribute(MyConstants.SESSION_MSG, realastic);
 				return true;
 			}
@@ -45,12 +45,23 @@ public class UserServiceImpl implements IUserService {
 	public void updateUser(HttpSession session, User user) throws Exception {
 		User realastic = (User) session.getAttribute(MyConstants.SESSION_MSG);
 		if (realastic != null) {
-			int id=realastic.getuId();
+			int id = realastic.getuId();
 			user.setuId(id);
 			userMapper.updateByPrimaryKeySelective(user);
 			session.setAttribute(MyConstants.SESSION_MSG, findUserById(id));
 		} else {
 			throw new ExceptionCommon("用户已过期！请重新登录");
 		}
+	}
+
+	@Override
+	public User findUser(User user) throws Exception {
+		User real = userMapper.selectByUserName(user.getuName());
+		if (real != null) {
+			if (real.getuPassword().equals(user.getuPassword())) {
+				return real;
+			}
+		}
+		return null;
 	};
 }

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import utils.MyConstants;
 
 import com.entity.User;
@@ -69,4 +71,11 @@ public class UserController {
 		return "user_info_others";
 	}
 
+	// //////////////////手机端////////////////////////////////////
+	@ResponseBody
+	@RequestMapping(value = "/clogin")
+	public User cLogin(User user, HttpSession session, HttpServletRequest req)
+			throws Exception {
+		return userService.findUser(user);
+	}
 }

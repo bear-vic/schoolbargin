@@ -34,4 +34,13 @@ public interface IUserService {
 	 * @param
 	 */
 	void updateUser(HttpSession session, User user) throws Exception;
+
+
+	/**
+	 * @description
+	 * @steps 				
+	 * @return Object
+	 * @param 
+	 */
+	User findUser(User user) throws Exception;
 }
