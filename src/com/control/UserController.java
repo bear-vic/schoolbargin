@@ -17,12 +17,15 @@ import utils.MyConstants;
 
 import com.entity.User;
 import com.entity.ex.SMessage;
+import com.service.EmailService;
 import com.service.IUserService;
 import com.service.impl.UserManager;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	@Resource
+	EmailService emailService;
 	@Resource
 	IUserService userService;
 	@Resource
@@ -53,6 +56,7 @@ public class UserController {
 	@RequestMapping("/regist")
 	public String regist(User user, HttpServletRequest req) throws Exception {
 		userService.addUser(user);
+		emailService.emailManage(user.getuEmail());
 		req.setAttribute(MyConstants.REQUEST_MSG, new SMessage("注册成功"));
 		return "hand_result";
 	}

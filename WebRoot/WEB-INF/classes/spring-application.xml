@@ -22,11 +22,13 @@
 	<context:annotation-config />
 	<!-- 设置使用注解的类所在的包 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
+	<!-- 加载配置文件 -->
+	<!-- <context:property-placeholder
+		location="classpath:jdbc-mysql.properties,classpath:email.properties" /> -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:jdbc-mysql.properties" />
 	</bean>
-
 	<!--配置 拦截器 -->
 	<!-- <mvc:interceptors> <bean class="com.intercepter.IntercepterCommon" 
 		/> </mvc:interceptors> -->
@@ -92,15 +94,44 @@
 		proxy-target-class="true" />
 
 	<!-- 异常处理类 -->
-	<bean class="com.exception.ExceptionHandler" />
+	<!-- <bean class="com.exception.ExceptionHandler" /> -->
 
 	<!-- 处理上传下载文件类型的类 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</bean>
-	
+
 	<!-- 对转向页面的路径解析。prefix：前缀， suffix：后缀 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/pages/" p:suffix=".jsp" />
+
+	<!-- 配置发送邮件的bean -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value>smtp.163.com</value>
+		</property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">25000</prop>
+			</props>
+		</property>
+		<property name="username">
+			<value>18146708980</value>
+		</property>
+		<property name="password">
+			<value>hxg163</value>
+		</property>
+		<property name="defaultEncoding">
+			<value>UTF-8</value>
+		</property>
+	</bean>
+
+	<bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="18146708980@163.com" />
+		<property name="subject" value="welcome" />
+		<!-- <property name="to" value="835260672@qq.com" /> -->
+		<!-- <property name="text" value="邮件内容" /> -->
+	</bean>
 </beans>
